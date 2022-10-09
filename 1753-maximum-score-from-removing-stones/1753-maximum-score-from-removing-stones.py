@@ -16,13 +16,6 @@ class Solution:
             z=len(l)
             if z==1:
                 break
-                a = heapq.heappop(l)
-                a=a+1
-                if a!=0:
-                    heapq.heappush(l,a)
-                counter+=1
-                # print(counter)
-                continue
             a = heapq.heappop(l)
             b = heapq.heappop(l)
             a = a+1

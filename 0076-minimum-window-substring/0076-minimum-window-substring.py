@@ -1,14 +1,21 @@
 class Solution:
     def minWindow(self, s: str, t: str) -> str:
-        need, missing = collections.Counter(t), len(t)
-        i = I = J = 0
-        for j, c in enumerate(s, 1):
-            missing -= need[c] > 0
-            need[c] -= 1
-            if not missing:
-                while i < j and need[s[i]] < 0:
-                    need[s[i]] += 1
-                    i += 1
-                if not J or j - i <= J - I:
-                    I, J = i, j
-        return s[I:J]
+        Tc = Counter(t)
+        Sc = Counter()
+
+        best_i = -sys.maxsize
+        best_j = sys.maxsize
+
+        i = 0
+
+        for j, char in enumerate(s):
+            Sc[char] += 1
+
+            while Sc & Tc == Tc:
+                if j - i < best_j - best_i:
+                    best_i, best_j = i, j
+
+                Sc[s[i]] -= 1
+                i += 1
+
+        return s[best_i : best_j + 1] if best_j - best_i < len(s) else ""

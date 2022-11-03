@@ -3,8 +3,8 @@ class Solution:
         Tc = Counter(t)
         Sc = Counter()
 
-        best_i = -sys.maxsize
-        best_j = sys.maxsize
+        best_i = -float("inf")
+        best_j = float("inf")
 
         i = 0
 
